@@ -28,12 +28,13 @@ extension CircularSlider {
         UIGraphicsPushContext(context)
         context.beginPath()
         
-        context.setLineWidth(lineWidth)
-        context.setLineCap(CGLineCap.round)
-        context.addArc(center: origin, radius: circle.radius, startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: false)
-        context.move(to: CGPoint(x: origin.x, y: origin.y))
-        context.drawPath(using: mode)
-        
+        if lineWidth >= 0 {
+            context.setLineWidth(lineWidth)
+            context.addArc(center: origin, radius: circle.radius, startAngle: arc.startAngle, endAngle: arc.endAngle, clockwise: false)
+            context.move(to: CGPoint(x: origin.x, y: origin.y))
+            context.drawPath(using: mode)
+        }
+
         UIGraphicsPopContext()
     }
     
